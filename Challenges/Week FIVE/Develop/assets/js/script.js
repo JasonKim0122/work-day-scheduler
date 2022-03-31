@@ -1,6 +1,3 @@
-//Variables
-var timeBlock = document.querySelector(".time-block");
-
 //display current date and time on homepage.
 $("#currentDay").text(moment().format("MMMM Do YYYY, h:mm:ss a"));
 
@@ -9,22 +6,42 @@ $("#currentDay").text(moment().format("MMMM Do YYYY, h:mm:ss a"));
 function timeBlockColor () {
     var timeHour = moment().hours();
 
-    timeBlock.each(function() {
-        var currentTime = parseInt($(this).attr("id"));
+    $(".time-block").each(function() {
+        var currentTime = parseInt($(this).attr("id").split("-")[1]);
+        console.log(this);
 
         if(currentTime > timeHour) {
-            timeBlock.classList.add("future");
+            $(this).addClass("future");
         } else if ( currentTime === timeHour) {
-            timeBlock.classList.add("present");
+            $(this).addClass("present");
         } else {
-            timeBlock.classList.add("past");
+            $(this).addClass("past");
+        }
+    });
+};
+
+//create a saveBtn that will store data into localStorage
+$(".saveBtn").on("click", function (){
+    var hour = $(this).siblings(".hour").text();
+    var description = $(this).siblings(".description").val();
+
+    localStorage.setItem(hour, description);
+});
+
+//After page is refreshed data will be pulled from localStorage and will remain on the page.
+function loadDescription () {
+    $(".hour").each(function(){
+        var timeHour = $(this).text();
+        var currentDescription = localStorage.getItem(timeHour);
+
+        if(currentDescription !==null) {
+            $(this).siblings(".description").val(currentDescription);
         }
     });
 };
 
 
-//create a saveBtn that will store data into localStorage
+//call functions
 
-
-
-//After page is refreshed data will be pulled from localStorage and will remain on the page.
+timeBlockColor();
+loadDescription();
