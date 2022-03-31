@@ -4,5 +4,5 @@ This is a daily work day scheduler that is used to plan out the users events thr
 
 
 # Links
-Website: https://jasonkim0122.github.io/work-day-scheduler/
-GitHub: https://github.com/JasonKim0122/work-day-scheduler
+* Website: https://jasonkim0122.github.io/work-day-scheduler/
+* GitHub: https://github.com/JasonKim0122/work-day-scheduler
